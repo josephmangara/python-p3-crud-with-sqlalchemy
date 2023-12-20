@@ -28,10 +28,9 @@
 # UniqueConstraint: checks new records to ensure that they do not match existing records at unique Columns.
 # CheckConstraint: uses SQL statements to check if new values meet specific criteria.
 
-
-
 # 3. Table Index:
-# An index named 'index_name' is created on the 'name' column for optimization purposes.
+# An index named 'index_name' is created on the 'name' column for optimization purposes and \
+#  to speed up lookups on certain column values.
 
 # 4. Database Setup:
 # An SQLite in-memory database is created using create_engine('sqlite:///:memory:').

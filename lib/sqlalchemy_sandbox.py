@@ -83,8 +83,8 @@ if __name__ == '__main__':
     # students = session.query(Student)
     # print([student for student in students])
     #       #    using the all method 
-    # # students = session.query(Student).all()
-    # # print(students)
+    students = session.query(Student).all()
+    print(students)
 
     #         # Selecting Only Certain Columns
     # names = [name for name in session.query(Student.name)]
