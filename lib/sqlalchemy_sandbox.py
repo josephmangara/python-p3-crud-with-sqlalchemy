@@ -48,6 +48,7 @@ if __name__ == '__main__':
     # use 'Session' class to create 'session' object
     session = Session()
 
+#  sessions allow us to interact with databases through SQLAlchemy and that those interactions are grouped into transactions.
 
         # creating records 
     albert_einstein = Student(
@@ -78,74 +79,74 @@ if __name__ == '__main__':
     # print(f"New student ID is {alan_turing.id}.")
 # bulk_save_objects() does not associate the records with the session, so we don't update our records' IDs.
     
-           # read records 
-    students = session.query(Student)
-    print([student for student in students])
-          #    using the all method 
-    # students = session.query(Student).all()
-    # print(students)
+    #        # read records 
+    # students = session.query(Student)
+    # print([student for student in students])
+    #       #    using the all method 
+    # # students = session.query(Student).all()
+    # # print(students)
 
-            # Selecting Only Certain Columns
-    names = [name for name in session.query(Student.name)]
-    print(names)
+    #         # Selecting Only Certain Columns
+    # names = [name for name in session.query(Student.name)]
+    # print(names)
 
-            #   Ordering
-    students_by_name = [student for student in session.query(
-            Student.name).order_by(
-            Student.name)]
-    print(students_by_name)
-    # query returns records in tuple data type 
+    #         #   Ordering
+    # students_by_name = [student for student in session.query(
+    #         Student.name).order_by(
+    #         Student.name)]
+    # print(students_by_name)
+    # # query returns records in tuple data type 
 
-           #    using grades
-    students_by_grade_desc = [student for student in session.query(
-            Student.name, Student.grade).order_by(
-            desc(Student.grade))]
+    #        #    using grades
+    # students_by_grade_desc = [student for student in session.query(
+    #         Student.name, Student.grade).order_by(
+    #         desc(Student.grade))]
 
-    print(students_by_grade_desc)
+    # print(students_by_grade_desc)
 
-        #    Limiting
-    oldest_student = [student for student in session.query(
-            Student.name, Student.birthday).order_by(
-            desc(Student.grade)).limit(1)]
+    #     #    Limiting
+    # oldest_student = [student for student in session.query(
+    #         Student.name, Student.birthday).order_by(
+    #         desc(Student.grade)).limit(1)]
 
-    print(oldest_student)
+    # print(oldest_student)
 
-        # first() method
-    oldest_student = session.query(
-            Student.name, Student.birthday).order_by(
-            desc(Student.grade)).first()
+    #     # first() method
+    # oldest_student = session.query(
+    #         Student.name, Student.birthday).order_by(
+    #         desc(Student.grade)).first()
 
-    print(oldest_student)
+    # print(oldest_student)
 
-    #    filtering 
-    query = session.query(Student).filter(Student.name.like('%Alan%'),
-        Student.grade == 11)
+    # #    filtering 
+    # query = session.query(Student).filter(Student.name.like('%Alan%'),
+    #     Student.grade == 11)
 
-    for record in query:
-        print(record.name)
+    # for record in query:
+    #     print(record.name)
 
-    #     updating 
-    session.query(Student).update({
-    Student.grade: Student.grade + 1
-    })
+    # #     updating 
+    # session.query(Student).update({
+    # Student.grade: Student.grade + 1
+    # })
 
-    print([(
-        student.name,
-        student.grade
-    ) for student in session.query(Student)])
+    # print([(
+    #     student.name,
+    #     student.grade
+    # ) for student in session.query(Student)])
 
-    #     deleting data 
-    query = session.query(
-        Student).filter(
-            Student.name == "Albert Einstein")        
+    # #     deleting data 
+    # query = session.query(
+    #     Student).filter(
+    #         Student.name == "Albert Einstein")        
 
-    # retrieve first matching record as object
-    albert_einstein = query.first()
+    # # retrieve first matching record as object
+    # albert_einstein = query.first()
 
-    # delete record
-    session.delete(albert_einstein)
-    session.commit()
+    # # delete record
+    # session.delete(albert_einstein)
+    # session.commit()
 
-    # try to retrieve deleted record
-    albert_einstein = query.first()
-    print(albert_einstein)
+    # # try to retrieve deleted record
+    # albert_einstein = query.first()
+    # print(albert_einstein)
